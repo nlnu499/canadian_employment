@@ -50,7 +50,7 @@ This application allows users to upload a CSV dataset, store it in a database, a
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/nlnu499/canadian_employment_dashboard.git
+git clone https://github.com/nlnu499/canadian_employment.git
 ```
 
 ### 2. Navigate to Project Folder
