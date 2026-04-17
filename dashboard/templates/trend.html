@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Trend</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+}
+
+/* NAVBAR */
+.nav {
+    background: #1e293b;
+    padding: 15px;
+    text-align: center;
+}
+.nav a {
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+/* MAIN CONTAINER */
+.container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+/* FILTER */
+.filter {
+    margin: 20px 0;
+}
+
+select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* CHART BOX */
+.chart-box {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* FIX HEIGHT */
+canvas {
+    height: 350px !important;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+    <a href="/dashboard/">🏠 Home</a>
+    <a href="/province/">📊 Province</a>
+    <a href="/distribution/">🥧 Distribution</a>
+    <a href="/trend/">📈 Trends</a>
+</div>
+
+<div class="container">
+
+    <h2>📈 Employment Trend</h2>
+
+    <!-- ✅ FILTER FIXED POSITION -->
+    <div class="filter">
+        <select id="provinceFilter">
+            <option value="">All Provinces</option>
+            {% for p in provinces_list %}
+            <option value="{{ p }}">{{ p }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- CHART -->
+    <div class="chart-box">
+        <canvas id="lineChart"></canvas>
+    </div>
+
+</div>
+
+<script>
+const years = JSON.parse('{{ years|safe }}');
+const yearEmployment = JSON.parse('{{ year_employment|safe }}');
+
+let lineChart = new Chart(document.getElementById('lineChart'), {
+    type:'line',
+    data:{
+        labels:years,
+        datasets:[{
+            label:'Employment Trend',
+            data:yearEmployment,
+            borderColor:'#facc15',
+            fill:true
+        }]
+    }
+});
+
+// FILTER
+document.getElementById("provinceFilter").addEventListener("change", function () {
+
+    let province = this.value;
+
+    fetch(`/filter-data/?province=${province}`)
+    .then(res => res.json())
+    .then(data => {
+
+        lineChart.data.labels = data.years;
+        lineChart.data.datasets[0].data = data.year_employment;
+        lineChart.update();
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Province Analysis</title>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+}
+
+/* NAVBAR */
+.nav {
+    background: #1e293b;
+    padding: 15px;
+    text-align: center;
+}
+.nav a {
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+/* CONTAINER */
+.container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+/* FILTER */
+.filter {
+    margin: 20px 0;
+}
+
+select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* CHART BOX */
+.chart-box {
+    margin-top: 20px;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* FIX HEIGHT */
+canvas {
+    height: 300px !important;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+    <a href="/dashboard/">🏠 Home</a>
+    <a href="/province/">📊 Province</a>
+    <a href="/distribution/">🥧 Distribution</a>
+    <a href="/trend/">📈 Trend</a>
+</div>
+
+<div class="container">
+
+    <h2>📊 Province Analysis</h2>
+
+    <!-- ✅ FILTER (FIXED POSITION) -->
+    <div class="filter">
+        <select id="provinceFilter">
+            <option value="">All Provinces</option>
+            {% for p in provinces_list %}
+            <option value="{{ p }}">{{ p }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- BAR CHART -->
+    <div class="chart-box">
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <!-- COMPARE CHART -->
+    <div class="chart-box">
+        <canvas id="compareChart"></canvas>
+    </div>
+
+</div>
+
+<script>
+const provinces = JSON.parse('{{ provinces|safe }}');
+const employment = JSON.parse('{{ employment|safe }}');
+const unemployment = JSON.parse('{{ unemployment|safe }}');
+
+// BAR
+let barChart = new Chart(document.getElementById('barChart'), {
+    type:'bar',
+    data:{
+        labels:provinces,
+        datasets:[{
+            label:'Employment',
+            data:employment,
+            backgroundColor:'#3b82f6'
+        }]
+    }
+});
+
+// COMPARE
+let compareChart = new Chart(document.getElementById('compareChart'), {
+    type:'bar',
+    data:{
+        labels:provinces,
+        datasets:[
+            {
+                label:'Employment',
+                data:employment,
+                backgroundColor:'#22c55e'
+            },
+            {
+                label:'Unemployment',
+                data:unemployment,
+                backgroundColor:'#ef4444'
+            }
+        ]
+    }
+});
+
+// FILTER
+document.getElementById("provinceFilter").addEventListener("change", function () {
+
+    let province = this.value;
+
+    fetch(`/filter-data/?province=${province}`)
+    .then(res => res.json())
+    .then(data => {
+
+        barChart.data.labels = data.provinces;
+        barChart.data.datasets[0].data = data.employment;
+        barChart.update();
+
+        compareChart.data.labels = data.provinces;
+        compareChart.data.datasets[0].data = data.employment;
+        compareChart.data.datasets[1].data = data.unemployment;
+        compareChart.update();
+    });
+});
+</script>
+
+</body>
+</html>

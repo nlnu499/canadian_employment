@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Distribution</title>
+
+<!-- ✅ Chart.js REQUIRED -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+/* NAVBAR */
+.nav {
+    background: #1e293b;
+    padding: 15px;
+}
+.nav a {
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+/* CHART BOX */
+.chart-box {
+    width: 60%;
+    margin: 40px auto;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* FIX CANVAS */
+canvas {
+    height: 350px !important;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+    <a href="/dashboard/"> Home</a>
+    <a href="/province/"> Province</a>
+    <a href="/distribution/"> Distribution</a>
+    <a href="/trend/"> Trends</a>
+</div>
+
+<h2> Employment Distribution</h2>
+
+<div class="chart-box">
+    <canvas id="pieChart"></canvas>
+</div>
+
+<script>
+const provinces = JSON.parse('{{ provinces|safe }}');
+const employment = JSON.parse('{{ employment|safe }}');
+
+// PIE CHART
+new Chart(document.getElementById('pieChart'), {
+    type:'pie',
+    data:{
+        labels:provinces,
+        datasets:[{
+            data:employment,
+            backgroundColor:[
+                '#3b82f6','#22c55e','#facc15',
+                '#ef4444','#a855f7','#06b6d4'
+            ]
+        }]
+    },
+    options:{
+        plugins:{
+            legend:{
+                labels:{ color:'white' }
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
