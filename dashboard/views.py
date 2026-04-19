@@ -6,8 +6,6 @@ from django.db.models import Avg, Max
 import csv
 import json
 
-
-# ---------------- HOME ----------------
 def home(request):
     form = UploadFileForm()
 
@@ -21,7 +19,7 @@ def home(request):
                 data = file.read().decode('utf-8').splitlines()
                 reader = csv.DictReader(data)
 
-                # Optional: remove old data
+               
                 EmploymentData.objects.all().delete()
 
                 for row in reader:
@@ -43,7 +41,7 @@ def home(request):
     return render(request, 'home.html', {'form': form})
 
 
-# ---------------- HELPER ----------------
+
 def get_province_stats(data):
     provinces = []
     employment = []
@@ -63,7 +61,7 @@ def get_province_stats(data):
     return provinces, employment, unemployment
 
 
-# ---------------- DASHBOARD ----------------
+# DASHBOARD
 def dashboard(request):
     data = EmploymentData.objects.all()
 
@@ -95,7 +93,7 @@ def dashboard(request):
     return render(request, 'dashboard.html', context)
 
 
-# ---------------- PROVINCE PAGE ----------------
+#PROVINCE PAGE
 def province_page(request):
     data = EmploymentData.objects.all()
 
@@ -109,7 +107,7 @@ def province_page(request):
     })
 
 
-# ---------------- DISTRIBUTION PAGE ----------------
+# DISTRIBUTION PAGE 
 def distribution_page(request):
     data = EmploymentData.objects.all()
 
@@ -121,7 +119,7 @@ def distribution_page(request):
     })
 
 
-# ---------------- TREND PAGE ----------------
+#  TREND PAGE 
 def trend_page(request):
     data = EmploymentData.objects.all()
 
@@ -139,7 +137,7 @@ def trend_page(request):
     })
 
 
-# ---------------- AJAX FILTER ----------------
+#  AJAX FILTER
 def filter_data(request):
     province = request.GET.get('province')
     data = EmploymentData.objects.all()
