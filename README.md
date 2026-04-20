@@ -2,7 +2,7 @@ Canadian Employment Dashboard
 
 Project Overview
 The Canadian Employment Dashboard is a Django-based web application developed for the CPRO 2201 course at Red Deer Polytechnic.
-It is designed to analyze Canadian employment data and display it using interactive charts.
+It analyzes Canadian employment data and presents it using interactive charts.
 
 Objectives
 Work with real-world datasets
@@ -12,7 +12,7 @@ Create data visualizations
 Analyze employment trends
 
 Features
-Dataset initially loaded from CSV and stored in SQLite database
+Initial dataset loaded from CSV and stored in SQLite database
 Data cleaning and preprocessing
 Interactive charts (bar, pie, line)
 Employment analysis by province
@@ -27,21 +27,26 @@ Chart.js
 
 How to Run
 
-Step 1
+Step 1: Clone the repository
+
 git clone https://github.com/nlnu499/canadian_employment.git
 
-Step 2
+Step 2: Navigate to the project
+
 cd canadian_employment
 cd canadian_employment_dashboard
 
-Step 3
+Step 3: Install dependencies
+
 pip install django==6.0
 
-Step 4
+Step 4: Run the server
+
 python manage.py runserver
 
-Step 5
-Open http://127.0.0.1:8000/
+Step 5: Open in browser
+
+http://127.0.0.1:8000/
 
 Dataset
 The dataset includes year, month, province, employment values, and rates.
