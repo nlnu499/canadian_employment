@@ -36,7 +36,7 @@ cd canadian_employment
 cd canadian_employment_dashboard
 
 Step 3:
-pip install django==6.0
+pip install django
 
 Step 4:
 python manage.py runserver
