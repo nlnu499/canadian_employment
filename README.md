@@ -1,4 +1,4 @@
-anadian Employment Dashboard
+Canadian Employment Dashboard
 
 Project Overview
 The Canadian Employment Dashboard is a Django-based web application developed for the CPRO 2201 course at Red Deer Polytechnic.
