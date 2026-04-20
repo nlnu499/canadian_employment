@@ -47,6 +47,36 @@ http://127.0.0.1:8000/
 
 --------------------------------------------------
 
+Project Structure
+
+canadian_employment/
+│
+├── canadian_employment_dashboard/
+│   ├── settings.py        # project configuration
+│   ├── urls.py            # main routing
+│   ├── asgi.py
+│   └── wsgi.py
+│
+├── dashboard/
+│   ├── migrations/
+│   ├── templates/
+│   │   ├── home.html
+│   │   ├── dashboard.html
+│   │   ├── province.html
+│   │   ├── distribution.html
+│   │   └── trend.html
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py           # handles CSV input
+│   ├── models.py          # database structure
+│   ├── urls.py            # app routing
+│   └── views.py           # application logic
+│
+├── db.sqlite3             # database file
+├── employment_dataset.csv # initial dataset
+├── manage.py              # project entry point
+└── README.md
+
 Dataset
 The dataset includes:
 Year
