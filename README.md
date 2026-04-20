@@ -32,8 +32,8 @@ Step 1:
 git clone https://github.com/nlnu499/canadian_employment.git
 
 Step 2:
-cd canadian_employment
-cd canadian_employment_dashboard
+cd canadian_employment-main
+cd canadian_employment-main
 
 Step 3:
 pip install django
