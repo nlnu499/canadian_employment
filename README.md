@@ -127,6 +127,10 @@ CPRO 2201 Python Programming II
 Red Deer Polytechnic
 Winter 2026
 
+
+--Youtube link https://youtu.be/0PtUUnMDiSk?si=sh8wbwLxF_WzK8DB
+
+
 --------------------------------------------------
 
 Conclusion
