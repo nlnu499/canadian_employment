@@ -1,87 +1,103 @@
-# Canadian Employment Dashboard
+Canadian Employment Dashboard
 
-## Overview
+Overview
 The Canadian Employment Dashboard is a Django-based web application developed for the CPRO 2201 course at Red Deer Polytechnic.
 
-The project analyzes Canadian employment data and presents it through interactive charts and a simple web interface. The dataset is initially loaded from a CSV file and stored in a SQLite database for further analysis.
+This project analyzes Canadian employment data and presents it using interactive charts. The dataset was initially loaded from a CSV file and stored in a SQLite database, which is used for all analysis and visualization.
 
----
+--------------------------------------------------
 
-## Key Features
-- Initial dataset loaded from CSV into database
-- Data cleaning and validation before storage
-- Interactive visualizations using Chart.js
+Key Features
+- Dataset loaded from CSV and stored in database
+- Data cleaning and validation
+- Interactive charts using Chart.js
 - Employment comparison across provinces
 - Trend analysis over time
-- Province-based filtering
+- Filtering by province
 
----
+--------------------------------------------------
 
-## Technologies
-- Python 3.12
-- Django 6.0
-- SQLite
-- HTML, CSS
-- Chart.js
+Technologies
+Python 3.12
+Django 6.0
+SQLite
+HTML and CSS
+Chart.js
 
----
+--------------------------------------------------
 
-## Getting Started
+How to Run
 
-### Clone the Repository
-```bash
+Step 1:
 git clone https://github.com/nlnu499/canadian_employment.git
-Navigate to Project Folder
+
+Step 2:
 cd canadian_employment
 cd canadian_employment_dashboard
-Install Dependencies
+
+Step 3:
 pip install django==6.0
-Run the Application
+
+Step 4:
 python manage.py runserver
-Open in Browser
+
+Step 5:
+Open browser and go to:
 http://127.0.0.1:8000/
+
+--------------------------------------------------
+
 Dataset
-
-The dataset contains Canadian employment statistics including:
-
-Year and Month
+The dataset includes:
+Year
+Month
 Province
-Employment values
-Unemployment rate
-Employment rate
-Participation rate
+Employment (Millions)
+Unemployment Rate
+Employment Rate
+Participation Rate
 
-The CSV file was used to populate the database, which is now used for visualization.
+The CSV file was used to populate the database. The application now uses stored data for visualization.
+
+--------------------------------------------------
 
 Data Processing
-Removed invalid and incomplete rows using error handling
-Cleaned text values using string methods
-Converted data types into integers and floats
-Stored validated data in SQLite database
+- Removed invalid or missing rows
+- Cleaned text values
+- Converted data into correct types
+- Stored cleaned data in SQLite database
+
+--------------------------------------------------
+
 Insights
-Ontario has the highest employment levels
-Smaller provinces show lower employment values
-Employment trends remain stable across years
-Rates provide better comparison than total employment
+- Ontario has the highest employment
+- Smaller provinces show lower values
+- Trends remain stable over time
+- Rates provide better comparison than totals
+
+--------------------------------------------------
+
 Project Structure
+The project follows Django structure:
+Models handle database
+Views handle logic
+Templates handle UI
 
-The project follows Django’s standard structure:
+--------------------------------------------------
 
-Models handle database structure
-Views manage application logic
-Templates display the user interface
 Authors
-
 Nikita
 Raman
 Taran
 
-Course Details
+--------------------------------------------------
 
-CPRO 2201 – Python Programming II
+Course Details
+CPRO 2201 Python Programming II
 Red Deer Polytechnic
 Winter 2026
 
-Conclusion
+--------------------------------------------------
 
-This project demonstrates how Django can be used to build a data-driven application by combining data processing, database management, and visualization techniques.
+Conclusion
+This project shows how Django can be used to build a data-driven web application using real data, database storage, and visualization.
